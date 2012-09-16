@@ -526,7 +526,6 @@ static void dhd_set_packet_filter(int value, dhd_pub_t *dhd)
 #endif
 }
 
-#if defined(CONFIG_HAS_EARLYSUSPEND)
 #ifdef CONFIG_BCMDHD_WIFI_PM
 static int wifi_pm = 0;
 /* /sys/module/bcmdhd/parameters/wifi_pm */
@@ -542,12 +541,15 @@ static int dhd_set_suspend(int value, dhd_pub_t *dhd)
 
 	DHD_TRACE(("%s: enter, value = %d in_suspend=%d\n",
 		__FUNCTION__, value, dhd->in_suspend));
-
+	
 #ifdef CONFIG_BCMDHD_WIFI_PM
-	if (wifi_pm == 1)
-	    power_mode = PM_FAST;
+	if (wifi_pm == 1) {
+		power_mode = PM_FAST;
+		DHD_ERROR(("%s: PM_FAST\n", __FUNCTION__));
+	} else
+		DHD_ERROR(("%s: PM_MAX \n", __FUNCTION__));
 #endif
-
+	dhd_suspend_lock(dhd);
 	if (dhd && dhd->up) {
 		if (value && dhd->in_suspend) {
 
