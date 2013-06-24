@@ -46,7 +46,9 @@
 #include "logo_rgb24_wvga_portrait_p1.h"
 #else
 #ifdef CONFIG_NILTMT
-#include "logo_rgb24_niltmt_portrait.h" 
+#include "logo_rgb24_niltmt_portrait.h"
+#elif defined(CONFIG_GOOGLEIMAGE_HDPI)
+#include "logo_rgb24_googleimage_portrait.h"
 #else //CONFIG_MACH_ARIES
 #include "logo_rgb24_wvga_portrait.h"
 #endif

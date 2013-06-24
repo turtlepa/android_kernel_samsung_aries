@@ -156,3 +156,9 @@ config NILTMT
 	default n
 	---help---
 	Only select this if you are building NiLTMT kernel
+
+config GOOGLEIMAGE_HDPI
+    bool "Google Splash Screen"
+    default n
+    ---help---
+    Simple Google Splash
