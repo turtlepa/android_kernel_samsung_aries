@@ -73,16 +73,16 @@ static const bool urgent_queues[] = {
 static const int queue_quantum[] = {
 	100,	/* ROWQ_PRIO_HIGH_READ */
 	75,	/* ROWQ_PRIO_REG_READ */
-	4,	/* ROWQ_PRIO_HIGH_SWRITE */
+	5,	/* ROWQ_PRIO_HIGH_SWRITE */
 	4,	/* ROWQ_PRIO_REG_SWRITE */
 	4,	/* ROWQ_PRIO_REG_WRITE */
 	3,	/* ROWQ_PRIO_LOW_READ */
-	2	/* ROWQ_PRIO_LOW_SWRITE */
+	12	/* ROWQ_PRIO_LOW_SWRITE */
 };
 
-/* Default values for idling on read queues (in msec) */
-#define ROW_IDLE_TIME_MSEC 5
-#define ROW_READ_FREQ_MSEC 20
+/* Default values for idling on read queues */
+#define ROW_IDLE_TIME_MSEC 10	/* msec */
+#define ROW_READ_FREQ_MSEC 25	/* msec */
 
 /**
  * struct rowq_idling_data -  parameters for idling on the queue
