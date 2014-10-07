@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  */
 
-#include <linux/export.h>
+#include <linux/module.h>
 #include <linux/cgroup.h>
 #include <linux/slab.h>
 #include <linux/fs.h>
