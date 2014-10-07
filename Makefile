@@ -245,8 +245,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer
-HOSTCXXFLAGS = -O2
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -Os -fomit-frame-pointer
+HOSTCXXFLAGS = -Os
 
 # Decide whether to build built-in, modular, or both.
 # Normally, just do built-in.
@@ -351,7 +351,7 @@ MODFLAGS	= -DMODULE \
 		  -march=armv7-a \
 		  -mfpu=neon \
 		  -mtune=cortex-a8 \
-		  -O2 \
+		  -Os \
 		  -fgcse-after-reload \
 		  -fipa-cp-clone \
 		  -fpredictive-commoning \
@@ -368,7 +368,7 @@ LDFLAGS_MODULE  =
 CFLAGS_KERNEL	= -march=armv7-a \
 		  -mfpu=neon \
 		  -mtune=cortex-a8 \
-		  -O2 \
+		  -Os \
 		  -fgcse-after-reload \
 		  -fipa-cp-clone \
 		  -fpredictive-commoning \
@@ -597,12 +597,12 @@ endif # $(dot-config)
 all: vmlinux
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
-KBUILD_CFLAGS	+= -O2
+KBUILD_CFLAGS	+= -Os
   ifdef CONFIG_GCC_48_OPTIMIZE
     KBUILD_CFLAGS  += -Wno-maybe-uninitialized
   endif
 else
-KBUILD_CFLAGS	+= -O2
+KBUILD_CFLAGS	+= -Os
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
